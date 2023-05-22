@@ -1,17 +1,3 @@
-class BinaryTree:
-    class Node:
-        def __init__(self, data=0):
-            self.left = None
-            self.right = None
-            self.data = data
-
-    def __init__(self, key=None):
-        if key is None:
-            self.root = None
-        else:
-            self.root = BinaryTree(key)
-
-
 class MaxHeap:
     def __init__(self):
         self.heap_list = []
@@ -20,15 +6,23 @@ class MaxHeap:
         self.heap_list.append(data)
         self.__sort()
 
+    def delete(self):
+        first = self.heap_list[0]
+        self.heap_list.pop(0)
+        return first
+
+    def get_length(self):
+        return len(self.heap_list)
+
     def __max_heapify(self, node_index, list_len):
         left_child = 2 * node_index + 1
         right_child = 2 * node_index + 2
-        if left_child < list_len and self.heap_list[node_index] < self.heap_list[left_child]:
+        if left_child < list_len and self.heap_list[node_index].freq < self.heap_list[left_child].freq:
             largest = left_child
         else:
             largest = node_index
 
-        if right_child < list_len and self.heap_list[largest] < self.heap_list[right_child]:
+        if right_child < list_len and self.heap_list[largest].freq < self.heap_list[right_child].freq:
             largest = right_child
 
         if largest != node_index:
