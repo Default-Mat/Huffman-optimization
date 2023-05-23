@@ -9,6 +9,7 @@ class MaxHeap:
     def delete(self):
         first = self.heap_list[0]
         self.heap_list.pop(0)
+        # self.__sort()
         return first
 
     def get_length(self):
@@ -41,6 +42,7 @@ class MaxHeap:
     def __sort(self):
         self.__build_max_heap()
         list_len = len(self.heap_list)
+        # temp = []
         last_element = list_len - 1
         while last_element >= 1:
             temp = self.heap_list[0]
@@ -48,3 +50,9 @@ class MaxHeap:
             self.heap_list[last_element] = temp
             self.__max_heapify(0, last_element)
             last_element -= 1
+        # while list_len >= 1:
+        #     temp.append(self.heap_list.pop(0))
+        #     list_len -= 1
+        #
+        # self.heap_list = temp
+
