@@ -32,6 +32,7 @@ class HuffmanTree:
         self.root = priority_list.delete()
 
     def encode_chars(self):
+        self.huff_codes.clear()
         string = ''
         self.__code_chars(self.root, string)
         return self.huff_codes
@@ -53,10 +54,13 @@ class HuffmanTree:
         return True
 
     def encode_sample_string(self, string):
+        temp_string = ''
         for char in string:
             for huff_code in self.huff_codes:
                 if char == self.huff_codes[huff_code]:
-                    self.encoded_string += huff_code
+                    temp_string += huff_code
+
+        self.encoded_string = temp_string
 
     def decode_coded_string(self, coded_string):
         string = ''
