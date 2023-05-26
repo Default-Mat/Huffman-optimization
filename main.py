@@ -7,6 +7,8 @@ from colorama import Fore
 from art import *
 
 
+# Uses the user's input to calculate the frequency of each character
+# Creates the characters dictionary(table), encoded string, and decoded string
 def process_input_stream(input_stream, tree):
     chars = {}
     for char in input_stream:
@@ -23,6 +25,7 @@ def process_input_stream(input_stream, tree):
     return tree
 
 
+# Prints the options list
 def show_list(input_stream):
     system("cls" if name == "nt" else "clear")
     tprint('Huffman', font='sub-zero')
@@ -44,6 +47,7 @@ def show_list(input_stream):
     time.sleep(0.05)
 
 
+# Clears everything in terminal and prints the title
 def show_title():
     system("cls" if name == "nt" else "clear")
     tprint('Huffman', font='sub-zero')
@@ -57,6 +61,7 @@ def main():
     huff_tree = HuffmanTree()
     process_input_stream(input_string, huff_tree)
 
+    # Checks and process the user choice
     while True:
         show_list(input_string)
         user_input = input(Fore.LIGHTBLUE_EX + '\nChoose an option' + Fore.RED + ' ---> ' + Fore.RESET)
