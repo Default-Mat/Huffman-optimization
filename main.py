@@ -23,51 +23,55 @@ def process_input_stream(input_stream, tree):
     return tree
 
 
-def show_list():
+def show_list(input_stream):
     system("cls" if name == "nt" else "clear")
     tprint('Huffman', font='sub-zero')
+    print(Fore.LIGHTRED_EX + '(i)' + Fore.YELLOW + ' Your string is:')
+    time.sleep(0.05)
+    print(f'" {input_stream} "\n')
+    time.sleep(0.05)
     print(Fore.MAGENTA + '(1)' + Fore.YELLOW + ' Show encoded characters')
     time.sleep(0.05)
     print(Fore.MAGENTA + '(2)' + Fore.YELLOW + ' Show encoded string')
     time.sleep(0.05)
     print(Fore.MAGENTA + '(3)' + Fore.YELLOW + ' Draw the final Huffman tree')
     time.sleep(0.05)
-    print(Fore.MAGENTA + '(4)' + Fore.YELLOW + ' Enter another string')
+    print(Fore.MAGENTA + '(4)' + Fore.YELLOW + ' Decode the coded string')
     time.sleep(0.05)
-    print(Fore.MAGENTA + '(5)' + Fore.YELLOW + ' Exit')
+    print(Fore.MAGENTA + '(5)' + Fore.YELLOW + ' Enter another string')
     time.sleep(0.05)
+    print(Fore.MAGENTA + '(6)' + Fore.YELLOW + ' Exit')
+    time.sleep(0.05)
+
+
+def show_title():
+    system("cls" if name == "nt" else "clear")
+    tprint('Huffman', font='sub-zero')
 
 
 def main():
     colorama.init(autoreset=True)
-    system("cls" if name == "nt" else "clear")
-    tprint('Huffman', font='sub-zero')
-    print(Fore.YELLOW + '')
+    show_title()
+    # print(Fore.YELLOW + '')
     input_string = input(Fore.GREEN + 'Enter the string you want to get encoded:\n' + Fore.RESET)
-
     huff_tree = HuffmanTree()
     process_input_stream(input_string, huff_tree)
 
     while True:
-        show_list()
+        show_list(input_string)
         user_input = input(Fore.LIGHTBLUE_EX + '\nChoose an option' + Fore.RED + ' ---> ' + Fore.RESET)
 
         if user_input == '1':
-            system("cls" if name == "nt" else "clear")
-            tprint('Huffman', font='sub-zero')
-
+            show_title()
             for code in huff_tree.huff_codes:
-                print(f'{code} : {huff_tree.huff_codes[code]}')
-
+                print(Fore.GREEN + code + Fore.WHITE + ' : ' + Fore.YELLOW + huff_tree.huff_codes[code] + Fore.RESET)
             enter = input('\nPress enter to continue....')
             continue
 
         elif user_input == '2':
-            system("cls" if name == "nt" else "clear")
-            tprint('Huffman', font='sub-zero')
-
+            show_title()
             print('The encoded string:\n')
-            print(huff_tree.encoded_string)
+            print(Fore.GREEN + f'" {huff_tree.encoded_string} "' + Fore.RESET)
             enter = input('\nPress enter to continue....')
             continue
 
@@ -76,19 +80,24 @@ def main():
             continue
 
         elif user_input == '4':
-            system("cls" if name == "nt" else "clear")
-            tprint('Huffman', font='sub-zero')
-            input_string = input(Fore.GREEN + 'Enter your string:\n' + Fore.RESET)
-
-            process_input_stream(input_string, huff_tree)
+            show_title()
+            print('The result of decoding ' + Fore.GREEN + f'" {huff_tree.encoded_string} "' + Fore.RESET + ':\n')
+            print(Fore.YELLOW + f'" {huff_tree.decoded_string} "' + Fore.RESET)
+            enter = input('\nPress enter to continue....')
             continue
 
         elif user_input == '5':
+            show_title()
+            input_string = input(Fore.GREEN + 'Enter your string:\n' + Fore.RESET)
+            process_input_stream(input_string, huff_tree)
+            continue
+
+        elif user_input == '6':
             break
 
         else:
-            system("cls" if name == "nt" else "clear")
-            print('Choose a valid option')
+            show_title()
+            print(Fore.RED + '!!' + 'Choose a valid option' + '!!' + Fore.RESET)
             time.sleep(2.0)
 
 
