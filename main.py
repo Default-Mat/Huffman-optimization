@@ -21,7 +21,7 @@ def process_input_stream(input_stream, tree):
     tree.encode_sample_string(input_stream)
     tree.calculate_comp_ratio(input_stream)
     coded_string = tree.encoded_string
-    tree.decode_coded_string(coded_string)
+    tree.decode_coded_string(tree.root, coded_string)
     return tree
 
 

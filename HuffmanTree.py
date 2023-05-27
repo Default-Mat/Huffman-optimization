@@ -52,7 +52,7 @@ class HuffmanTree:
     # built code to the character of that leaf in the dictionary
     def __code_chars(self, root, string):
         if root.left is None and root.right is None:
-            self.huff_codes[string] = root.char
+            self.huff_codes[root.char] = string
             return True
 
         elif root is None:
@@ -70,21 +70,23 @@ class HuffmanTree:
     def encode_sample_string(self, string):
         temp_string = ''
         for char in string:
-            for huff_code in self.huff_codes:
-                if char == self.huff_codes[huff_code]:
-                    temp_string += huff_code
-
+            temp_string += self.huff_codes[char]
         self.encoded_string = temp_string
 
-    # Gets the coded string and decodes it using characters dictionary(table) called huff_codes
-    def decode_coded_string(self, coded_string):
+    # Gets the coded string and huffman tree root to decode it by iterating the tree
+    def decode_coded_string(self, root, coded_string):
         string = ''
-        char_code = ''
-        for char in coded_string:
-            char_code += char
-            if char_code in self.huff_codes:
-                string += self.huff_codes[char_code]
-                char_code = ''
+        ptr = root
+        for i in range(len(coded_string)):
+            if coded_string[i] == '0':
+                ptr = ptr.left
+            else:
+                ptr = ptr.right
+
+            if (ptr.right and ptr.left) is None:
+                string += ptr.char
+                ptr = root
+
         self.decoded_string = string
 
     # Sets the canvas window and uses __draw to show the huffman tree
