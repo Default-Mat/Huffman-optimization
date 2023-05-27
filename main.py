@@ -1,5 +1,4 @@
 import colorama
-
 from HuffmanTree import HuffmanTree
 import time
 from os import name, system
@@ -20,6 +19,7 @@ def process_input_stream(input_stream, tree):
     tree.build_huffman_tree(chars)
     tree.encode_chars()
     tree.encode_sample_string(input_stream)
+    tree.calculate_comp_ratio(input_stream)
     coded_string = tree.encoded_string
     tree.decode_coded_string(coded_string)
     return tree
@@ -56,7 +56,6 @@ def show_title():
 def main():
     colorama.init(autoreset=True)
     show_title()
-    # print(Fore.YELLOW + '')
     input_string = input(Fore.GREEN + 'Enter the string you want to get encoded:\n' + Fore.RESET)
     huff_tree = HuffmanTree()
     process_input_stream(input_string, huff_tree)
@@ -77,6 +76,7 @@ def main():
             show_title()
             print('The encoded string:\n')
             print(Fore.GREEN + f'" {huff_tree.encoded_string} "' + Fore.RESET)
+            print(Fore.YELLOW + '\nCompression ratio: ' + Fore.GREEN + '{0:.2f}'.format(huff_tree.comp_ratio) + '%' + Fore.RESET)
             enter = input('\nPress enter to continue....')
             continue
 

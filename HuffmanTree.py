@@ -1,4 +1,4 @@
-from MaxHeapTree import MaxHeap
+from MinHeapTree import MinHeap
 from Node import Node
 import tkinter as tk
 
@@ -17,12 +17,13 @@ class HuffmanTree:
         self.huff_codes = {}
         self.encoded_string = ''
         self.decoded_string = ''
+        self.comp_ratio = 0
 
     # Puts the character nodes in the priority list. Then each time it gets the
     # two smallest elements in the list and gives them a parent that has the
     # total frequency. then inserts that parent node in the list
     def build_huffman_tree(self, char_list):
-        priority_list = MaxHeap()
+        priority_list = MinHeap()
         for char in char_list:
             root = Node(char_list[char], char)
             priority_list.insert(root)
@@ -96,6 +97,13 @@ class HuffmanTree:
         tk.Canvas.create_circle = _create_circle
         self.__draw(c, 500, 50, 500, 50, 200, 350, 36, 40, self.root)
         frame.mainloop()
+
+    def calculate_comp_ratio(self, string):
+        str_len = len(string)
+        coded_str_len = len(self.encoded_string)
+        size_in_bits = str_len * 8
+        ratio = (coded_str_len / size_in_bits) * 100
+        self.comp_ratio = ratio
 
     # Shows the huffman tree by post-order iterating and drawing the circles, texts, and lines
     # Draws a rectangle instead of circle if it reaches a leaf in the tree and show the character and the frequency
