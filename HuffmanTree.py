@@ -104,7 +104,7 @@ class HuffmanTree:
         str_len = len(string)
         coded_str_len = len(self.encoded_string)
         size_in_bits = str_len * 8
-        ratio = (coded_str_len / size_in_bits) * 100
+        ratio = 100 - (coded_str_len / size_in_bits) * 100
         self.comp_ratio = ratio
 
     # Shows the huffman tree by post-order iterating and drawing the circles, texts, and lines

@@ -43,7 +43,7 @@ def show_list(input_stream):
     time.sleep(0.05)
     print(Fore.MAGENTA + '(5)' + Fore.YELLOW + ' Enter another string')
     time.sleep(0.05)
-    print(Fore.MAGENTA + '(6)' + Fore.YELLOW + ' Exit')
+    print(Fore.RED + '(6)' + Fore.YELLOW + ' Exit')
     time.sleep(0.05)
 
 
