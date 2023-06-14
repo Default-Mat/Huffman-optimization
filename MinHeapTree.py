@@ -11,7 +11,7 @@ class MinHeap:
     def insert(self, data):
         self.heap_list.append(data)
         last_element = self.get_length() - 1
-        self.swap(last_element)
+        self.__swap(last_element)
 
     # Pops the root, puts the last element in place of root, and heapifies the tree
     def delete(self):
@@ -26,13 +26,13 @@ class MinHeap:
         return len(self.heap_list)
 
     # Everytime it Swaps the node and parent if the node is smaller
-    def swap(self, node_index):
+    def __swap(self, node_index):
         parent = math.ceil(node_index / 2) - 1
         if node_index > 0 and self.heap_list[node_index].freq < self.heap_list[parent].freq:
             temp = self.heap_list[node_index]
             self.heap_list[node_index] = self.heap_list[parent]
             self.heap_list[parent] = temp
-            self.swap(parent)
+            self.__swap(parent)
 
     # Gets the index of the node and length of the heap to heapify it
     # Everytime it swaps the parent and its child if the child is smaller

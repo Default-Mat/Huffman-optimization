@@ -53,18 +53,9 @@ class HuffmanTree:
     def __code_chars(self, root, string):
         if root.left is None and root.right is None:
             self.huff_codes[root.char] = string
-            return True
-
-        elif root is None:
-            return False
-
-        string += '0'
-        is_char = self.__code_chars(root.left, string)
-        if is_char:
-            string = string[:-1]
-        string += '1'
-        self.__code_chars(root.right, string)
-        return True
+            return
+        self.__code_chars(root.left, string + '0')
+        self.__code_chars(root.right, string + '1')
 
     # Gets the user string and encodes it using characters dictionary(table) called huff_codes
     def encode_sample_string(self, string):
