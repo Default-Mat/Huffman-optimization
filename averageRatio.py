@@ -25,7 +25,7 @@ def show_average_ratio():
         tree.root = None
         del tree
 
-    print(sum_of_ratios / 100)
+    print('The average compression ratio for 100 strings: ' + str(sum_of_ratios / 100))
 
 
 if __name__ == '__main__':
